@@ -53,7 +53,7 @@ int sectionNumber
 This class also implements `java.io.Serializable` because when a Course object is instantiated it is added to `ArrayList<Course> courses` which stores all the courses in the system and serializes them when the user decides to exit the program.  The data is stored into a file called `Courses.ser`.
 
 #### Main
-The Main class is the one that connects all the other classes.  It essentially runs the main functionality of the application as well as is responsible for the serialization and deserialization of the Course and User object data.
+The Main class is the one that connects all the other classes.  It essentially runs the main functionality of the application as well as is responsible for the serialization and deserialization of the Course and User object data.  Main takes the initial input when prompting the user at the login screen and determines whether or not to display the Admin or Student user menu.  Main has two static method for both the Admin and Student login; these are the methods that are called when it is determined whether or not it is an Admin or Student attempting to log in.  Main also handles `InputMismatchException` which can be thrown if a Scanner object is expecting a certain type of input and recieves another.  Since this program heavily relies on a Scanner object, many methods in this class are passed a Scanner and not closed until the end of Main's `main(String[] args)` method.
 
 ## Concepts
 
