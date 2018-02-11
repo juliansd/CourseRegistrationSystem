@@ -124,9 +124,11 @@ The User class which is extended by Admin and Student is an abstract class.  It 
 An example of inheritance is the fact that Admin and Student both inherit from User which includes inheriting methods and instance variables.  To be more specific, on line 278 in my Main class I call `student.getPassword()` which is a method inherited from the User class.
 
 ### Polymorphism
-
+Polymorphism is used when I use `ArrayList<User> users` in my Main class to store all of the users, Admin and Student, who are registered in the system.  It is polymorphism because I am storing Admin and Student objects in an array of type User which Admin and Student inherit from, thus being polymorphism because I am treating them as User types.
 
 ### Encapsulation
+
+
 ### ADT (Abstract Data Types)
 
 ## Getting Started
