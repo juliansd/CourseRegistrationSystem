@@ -2,6 +2,7 @@
 This application simulates a course registration system for a university.
 
 #### Table of Contents
+[Getting Started](https://github.com/juliansd/CourseRegistrationSystem#getting-started)
 [Design](https://github.com/juliansd/CourseRegistrationSystem#design)
 * [Workflow](https://github.com/juliansd/CourseRegistrationSystem#workflow)
 * [Interfaces](https://github.com/juliansd/CourseRegistrationSystem#interfaces)
@@ -21,7 +22,13 @@ This application simulates a course registration system for a university.
 * [Encapsulation](https://github.com/juliansd/CourseRegistrationSystem#encapsulation)
 * [ADT (Abstract Data Types)](https://github.com/juliansd/CourseRegistrationSystem#adt-(abstract-data-types))
 
-[Getting Started](https://github.com/juliansd/CourseRegistrationSystem#getting-started)
+## Getting Started
+For initial use please login with Admin acces:
+Username: `Admin`
+Password: `Admin001`
+
+Then follow the prompts as given.  `-help` can be used to view the commands that Admin and Student users have.  Note that student users are not accessible until the Admin runs `-register` and follows the prompts.<Enter>
+NOTE:  If the program closes prematurely and or the user does not exit the program using the `-exit` command, the data from that session will be lost.  Using the `-exit` commands ensures that the data changed and or created from that session is serialized.  If there is a problem with the initial compile of this program, try navigating to `CourseRegistrationSystem/serializedData` and delete whatever is inside.
 
 ## Design
 Here I will talk about the overall design of this application.
@@ -137,11 +144,3 @@ public ArrayList<Course> getCourses() {}
 ```
 
 ### ADT (Abstract Data Types)
-
-## Getting Started
-For initial use please login with Admin acces:
-Username: `Admin`
-Password: `Admin001`
-
-Then follow the prompts as given.  `-help` can be used to view the commands that Admin and Student users have.  Note that student users are not accessible until the Admin runs `-register` and follows the prompts.<Enter>
-NOTE:  If the program closes prematurely and or the user does not exit the program using the `-exit` command, the data from that session will be lost.  Using the `-exit` commands ensures that the data changed and or created from that session is serialized.  If there is a problem with the initial compile of this program, try navigating to `CourseRegistrationSystem/serializedData` and delete whatever is inside.
