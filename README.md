@@ -8,6 +8,7 @@ This application simulates a course registration system for a university.
 * [Classes](https://github.com/juliansd/CourseRegistrationSystem#classes)
     * [User](https://github.com/juliansd/CourseRegistrationSystem#user)
     * [Admin](https://github.com/juliansd/CourseRegistrationSystem#admin)
+    * [Student](https://github.com/juliansd/CourseRegistrationSystem#student)
     * [Course](https://github.com/juliansd/CourseRegistrationSystem#course)
     * [Main](https://github.com/juliansd/CourseRegistrationSystem#main)
     
