@@ -3,6 +3,7 @@ package data.structures.jsd410;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -13,7 +14,7 @@ import java.io.ObjectInputStream;
 /**
  * This class is for the main functionality of the Course Registration System.
  * @author juliansmithdeniro
- *
+ * @version 1.0
  */
 
 public class Main {
@@ -132,10 +133,10 @@ public class Main {
 	 * Method which runs if the program detects that an Admin type user successfully logs in.
 	 * @param users an ArrayList which represents the users stored in the system.
 	 * @param courses an ArrayList which represents the courses stored in the system.
+	 * @param scan is a Scanner which is used to collect user input while adminLogin is active.
 	 */
 	
-	public static void adminLogin(ArrayList<User> users, ArrayList<Course> courses) throws InputException {
-		Scanner scan = new Scanner(System.in);
+	public static void adminLogin(ArrayList<User> users, ArrayList<Course> courses, Scanner scan) {
 		System.out.println("Password:\t");
 		String password = scan.nextLine();
 		if (password.equals("Admin001")) {
@@ -163,19 +164,32 @@ public class Main {
 					System.out.println("Course location:");
 					String courseLocation = scan.nextLine();
 					System.out.println("Section number:");
-					int sectionNumber = scan.nextInt();
-					System.out.println("Maximum number of students:");
-					int maxNumOfStudents = scan.nextInt();
-					
-					Course newCourse = admin.createCourse(
-							courseName, courseID, maxNumOfStudents, courseInstructor,
-							sectionNumber, courseLocation);
-					courses.add(newCourse);
-					
-					System.out.println("Course created.");
+					int sectionNumber;
+					int maxNumOfStudents;
+					try {
+						sectionNumber = scan.nextInt();
+						System.out.println("Maximum number of students:");
+						maxNumOfStudents = scan.nextInt();
+						Course newCourse;
+						newCourse = admin.createCourse(
+								courseName, courseID, maxNumOfStudents, courseInstructor,
+								sectionNumber, courseLocation);
+						courses.add(newCourse);
+						System.out.println("Course created.");
+					} catch (InputMismatchException e) {
+						e.printStackTrace();
+						System.err.println(
+								"Could not understand your input.  "
+								+ "The course was not created.");
+					}
 
 				} else if (command.equals("-delcourse")) {
-					admin.deleteCourse(courses, users);
+					try {
+						admin.deleteCourse(courses, users);
+					} catch (InputMismatchException e) {
+						System.err.println("Couldn't understand that input.");
+						e.printStackTrace();
+					}
 
 				} else if (command.equals("-chcourse")) {
 					System.out.println(
@@ -186,18 +200,27 @@ public class Main {
 					System.out.println("Course ID: ");
 					String courseIDToEdit = scan.nextLine();
 					System.out.println("Section number: ");
-					int sectionNumberToEdit = scan.nextInt();
-					for (Course course : courses) {
-						if (
-								course.getCourseName().equals(courseNameToEdit) &&
-								course.getCourseID().equals(courseIDToEdit) &&
-								course.getSectionNumber() == sectionNumberToEdit) {
-							admin.editCourse(course);
-							System.out.println("Course edit successful.");
-						} else {
-							System.err.println("Could not find specified course.");
+					int sectionNumberToEdit;
+					try {
+						sectionNumberToEdit = scan.nextInt();
+						for (Course course : courses) {
+							if (
+									course.getCourseName().equals(courseNameToEdit) &&
+									course.getCourseID().equals(courseIDToEdit) &&
+									course.getSectionNumber() == sectionNumberToEdit) {
+								admin.editCourse(course);
+								System.out.println("Course edit successful.");
+								break;
+							} else {
+								System.err.println("Could not find specified course.");
+							}
 						}
+					} catch (InputMismatchException e) {
+						e.printStackTrace();
+						System.err.println("Could not understand that input.  "
+								+ "Course wasn't changed.");
 					}
+					
 
 				} else if (command.equals("-showcourse")) {
 					admin.showCourseInfo(courses);
@@ -237,19 +260,18 @@ public class Main {
 				}
 			}
 		} else {
-			System.out.println("Incorrect username or password.");
+			System.out.println("Incorrect username or password. Shutting down...");
 		}
 	}
 	
 	/**
 	 * Follows suit to the method prior except for a Student type User.
-	 * @param student is the student object which is created by the Admin.
+	 * @param student student is the student object which is created by the Admin.
 	 * @param users an ArrayList which represents the users in the system.
 	 * @param courses an ArrayList which represents the courses in the system.
 	 */
 	
-	public static void studentLogin(Student student, ArrayList<User> users, ArrayList<Course> courses) throws InputException {
-		Scanner scan = new Scanner(System.in);
+	public static void studentLogin(Student student, ArrayList<User> users, ArrayList<Course> courses, Scanner scan) {
 		System.out.println("Password:\t");
 		String password = scan.nextLine();
 		if (password.equals(student.getPassword())) {
@@ -280,8 +302,16 @@ public class Main {
 					System.out.println("Course ID:");
 					String courseID = scan.nextLine();
 					System.out.println("Section number: ");
-					int sectionNumber = scan.nextInt();
-					student.withdraw(courseName, courseID, sectionNumber);
+					int sectionNumber;
+					try {
+						sectionNumber = scan.nextInt();
+						student.withdraw(courseName, courseID, sectionNumber);
+					} catch (InputMismatchException e) {
+						e.printStackTrace();
+						System.err.println("Please enter a number for the Section number prompt.  "
+								+ "Try again.");
+					}
+					
 			
 				} else if (command.equals("-myclasses")) {
 					student.viewAllCurrentCourses();
@@ -341,24 +371,21 @@ public class Main {
 			courses = deserializeCourses("src/serializedData/Courses.ser");
 			users = deserializeUsers("src/serializedData/Users.ser");
 		}
-		try {
-			Scanner scan = new Scanner(System.in);
-			System.out.println("Welcome to the Univeristy Course Registration System.\n"
-					+ "Please enter your username and password.\n"
-					+ "Username:\t");
-			String username = scan.nextLine();
-			if (username.equals("Admin")) {
-				adminLogin(users, courses);
-			} else {
-				for (User user : users) {
-					if (user.getUsername().equals(username)) {
-						studentLogin((Student)user, users, courses);
-					}
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Welcome to the Univeristy Course Registration System.\n"
+				+ "Please enter your username and password.\n"
+				+ "Username:\t");
+		String username = scan.nextLine();
+		if (username.equals("Admin")) {
+			adminLogin(users, courses, scan);
+		} else {
+			for (User user : users) {
+				if (user.getUsername().equals(username)) {
+					studentLogin((Student)user, users, courses, scan);
 				}
 			}
-		} catch (InputException e) {
-			e.printStackTrace();
+			System.out.println("Username not registered with system.  Shutting down...");
 		}
+		scan.close();
 	}
-	
 }

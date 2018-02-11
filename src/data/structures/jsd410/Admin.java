@@ -4,21 +4,43 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * This class represents that of the Admin user which in this system
+ * there is only one of and has administrative capabilities over the system.
+ * It also implements the interface AdminInterface and java.io.Serializable 
+ * o be serialized when the program terminates
+ * @author juliansmithdeniro
+ * @version 1.0
+ */
 @SuppressWarnings("serial")
 public class Admin extends User implements AdminInterface, java.io.Serializable {
 	
+	/**
+	 * Scanner which is passed when object is initialized to access user input.
+	 */
 	private static Scanner scan = new Scanner(System.in);
 
+	/**
+	 * Default constructor inherited from super class User.
+	 */
 	public Admin() {
 		super(scan);
 	}
 	
+	/**
+	 * Constructor which allows for the object to be initialized with the specified parameters.
+	 * @param username is a String representing the Admin's username to login with.  Default is Admin.
+	 * @param password is a String representing the Admin's password to login with.  Default is Admin001.
+	 * @param firstName is a String representing the Admin's first name.
+	 * @param lastName is a String representing the Admin's last name.
+	 */
 	public Admin(String username, String password, String firstName, String lastName) {
 		super(username, password, firstName, lastName, scan);
 	}
-
+	
 	@Override
 	public Course createCourse(String courseName, String courseID, int maxNumOfStudents, String courseInstructor,
 			int sectionNumber, String courseLocation) {
@@ -32,7 +54,8 @@ public class Admin extends User implements AdminInterface, java.io.Serializable 
 	}
 
 	@Override
-	public void deleteCourse(ArrayList<Course> courses, ArrayList<User> users) {
+	public void deleteCourse(ArrayList<Course> courses, ArrayList<User> users) 
+			throws InputMismatchException {
 		System.out.println("Please enter the COURSE NAME, COURSE ID, and COURSE SECTION of the "
 				+ "course you would like to delete.");
 		System.out.println("Course name: ");
@@ -53,6 +76,7 @@ public class Admin extends User implements AdminInterface, java.io.Serializable 
 				}
 				courses.remove(courses.get(i));
 				System.out.println("Course removed.");
+				break;
 			}
 		}	
 	}
@@ -107,23 +131,26 @@ public class Admin extends User implements AdminInterface, java.io.Serializable 
 		System.out.println("Course ID: ");
 		String courseID = scan.nextLine();
 		System.out.println("Section number: ");
-		int sectionNumber = scan.nextInt();
-		for (Course course : courses) {
-			if (
-					course.getCourseName().equals(courseName) &&
-					course.getCourseID().equals(courseID) &&
-					course.getSectionNumber() == sectionNumber) {
-				ArrayList<Student> courseList = course.getStudents();
-				System.out.println("Displaying the class roster for " + course.getCourseName() + ":");
-				for (Student student : courseList) {
-					System.out.println(student.getFirstName() + " " + student.getLastName());
+		int sectionNumber;
+		try {
+			sectionNumber = scan.nextInt();
+			for (Course course : courses) {
+				if (
+						course.getCourseName().equals(courseName) &&
+						course.getCourseID().equals(courseID) &&
+						course.getSectionNumber() == sectionNumber) {
+					ArrayList<Student> courseList = course.getStudents();
+					System.out.println("Displaying the class roster for " + course.getCourseName() + ":");
+					for (Student student : courseList) {
+						System.out.println(student.getFirstName() + " " + student.getLastName());
+					}
 				}
 			}
+		} catch (InputMismatchException e) {
+			e.printStackTrace();
+			System.err.println(
+					"Please make sure you enter a number for the Section prompt. Try again.");
 		}
-		
-		
-		
-		
 	}
 
 	@Override
@@ -143,6 +170,10 @@ public class Admin extends User implements AdminInterface, java.io.Serializable 
 			}
 		}
 	}
+	
+	/**
+	 * Method which outputs a list of commands that are executable by Admin while logged in.
+	 */
 	
 	public void help() {
 		System.out.printf(

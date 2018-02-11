@@ -1,18 +1,45 @@
 package data.structures.jsd410;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * Class which represents a Student and inherits from it's super class User.
+ * The class is used to represent the students to be registered in courses on the system.
+ * It also implements the interface StudentInterface and java.io.Serializable 
+ * o be serialized when the program terminates
+ * @author juliansmithdeniro
+ * @version 1.0
+ *
+ */
 @SuppressWarnings("serial")
 public class Student extends User implements StudentInterface, java.io.Serializable {
 
+	/**
+	 * Scanner which is passed when object is initialized to access user input.
+	 */
 	private static Scanner scan = new Scanner(System.in);
+	
+	/**
+	 * ArrayList<Course> which represents the courses that the student is registered for.
+	 */
 	private ArrayList<Course> courses = new ArrayList<Course>();
 
+	/**
+	 * Default constructor inherited from super class User.
+	 */
 	public Student() {
 		super(scan);
 	}
 	
+	/**
+	 * Constructor which allows the object instantiated with the specified parameters.
+	 * @param username a String representing the username of the Student object.
+	 * @param password a String representing the password of the Student object.
+	 * @param firstName a String representing the first name of the Student object.
+	 * @param lastNamea String representing the last name of the Student object.
+	 */
 	public Student(String username, String password, String firstName, String lastName) {
 		super(username, password, firstName, lastName, scan);
 	}
@@ -60,6 +87,7 @@ public class Student extends User implements StudentInterface, java.io.Serializa
 						this.getFirstName() + " " + this.getLastName() + 
 						" is no longer registered in " + this.getCourses().get(i).getCourseName());
 				this.getCourses().remove(i);
+				break;
 			}
 		}
 		
@@ -83,24 +111,31 @@ public class Student extends User implements StudentInterface, java.io.Serializa
 		System.out.println("Course ID:");
 		String courseID = scan.nextLine();
 		System.out.println("Section:");
-		int courseSection = scan.nextInt();
-		
-		int n = courses.size();
-		for (Course course : courses) {
-			n--;
-			if (
-					course.getCourseName().equals(courseName) && 
-					course.getSectionNumber() == courseSection && 
-					course.getCourseID().equals(courseID) && 
-					!(course.getMaxNumOfstudents() == course.getCurrentNumOfstudents())) {
-				course.addStudent(this);
-				this.courses.add(course);
-				System.out.println("Registration complete.");
-				break;
+		int courseSection;
+		try {
+			courseSection = scan.nextInt();
+			int n = courses.size();
+			for (Course course : courses) {
+				n--;
+				if (
+						course.getCourseName().equals(courseName) && 
+						course.getSectionNumber() == courseSection && 
+						course.getCourseID().equals(courseID) && 
+						!(course.getMaxNumOfstudents() == course.getCurrentNumOfstudents())) {
+					course.addStudent(this);
+					this.courses.add(course);
+					System.out.println("Registration complete.");
+					break;
+				}
 			}
-		}
-		if (n == 0) {
-			System.out.println("Could not find specified course.");
+			if (n == 0) {
+				System.out.println("Could not find specified course.");
+			}
+		} catch (InputMismatchException e) {
+			e.printStackTrace();
+			System.err.println(
+					"Please make sure to enter a number for the Course section prompt.  "
+					+ "Try again.");
 		}
 	}
 
@@ -116,10 +151,18 @@ public class Student extends User implements StudentInterface, java.io.Serializa
 				"-help:\tView list of student commands.");
 	}
 
+	/**
+	 * Getter for student courses instance variable.
+	 * @return an ArrayList<Course> which represents the student's registered courses.
+	 */
 	public ArrayList<Course> getCourses() {
 		return courses;
 	}
 
+	/**
+	 * Setter for student courses instance variable.
+	 * @param courses an ArrayList<Course> which represents the student's registered courses.
+	 */
 	public void setStudentCourses(ArrayList<Course> courses) {
 		this.courses = courses;
 	}
