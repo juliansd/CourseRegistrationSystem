@@ -3,6 +3,7 @@ This application simulates a course registration system for a university.
 
 #### Table of Contents
 [Getting Started](https://github.com/juliansd/CourseRegistrationSystem#getting-started)
+
 [Design](https://github.com/juliansd/CourseRegistrationSystem#design)
 * [Workflow](https://github.com/juliansd/CourseRegistrationSystem#workflow)
 * [Interfaces](https://github.com/juliansd/CourseRegistrationSystem#interfaces)
