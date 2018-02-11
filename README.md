@@ -143,4 +143,5 @@ For initial use please login with Admin acces:
 Username: `Admin`
 Password: `Admin001`
 
-Then follow the prompts as given.  `-help` can be used to view the commands that Admin and Student users have.  Note that student users are not accessible until the Admin runs `-register` and follows the prompts.
+Then follow the prompts as given.  `-help` can be used to view the commands that Admin and Student users have.  Note that student users are not accessible until the Admin runs `-register` and follows the prompts.<Enter>
+NOTE:  If the program closes prematurely and or the user does not exit the program using the `-exit` command, the data from that session will be lost.  Using the `-exit` commands ensures that the data changed and or created from that session is serialized.  If there is a problem with the initial compile of this program, try navigating to `CourseRegistrationSystem/serializedData` and delete whatever is inside.
