@@ -1,5 +1,5 @@
-#Course Registration System
-##Getting Started
+# Course Registration System
+## Getting Started
 For initial use please login with Admin acces:
 Username: `Admin`
 Password: `Admin001`
