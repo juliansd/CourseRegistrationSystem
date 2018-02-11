@@ -127,7 +127,13 @@ An example of inheritance is the fact that Admin and Student both inherit from U
 Polymorphism is used when I use `ArrayList<User> users` in my Main class to store all of the users, Admin and Student, who are registered in the system.  It is polymorphism because I am storing Admin and Student objects in an array of type User which Admin and Student inherit from, thus being polymorphism because I am treating them as User types.
 
 ### Encapsulation
+The concept of encapsulation is used throughout this application due to the fact that all of the instance variables for each class are delcared private, thus having to use getters and setters to access them models encapsulation so that these variables cannot be changed unless explictly done so by someone who knows that they are changing the variable.<Enter>
 
+For example, one of the instance variables for my Student class `courses` which represents the courses that the student is currently registered in, is declared private:    `private ArrayList<Course> courses = new ArrayList<Course>();` and has getters and setters:
+```
+public void setStudentCourses(ArrayList<Course> courses) {}
+public ArrayList<Course> getCourses() {}
+```
 
 ### ADT (Abstract Data Types)
 
