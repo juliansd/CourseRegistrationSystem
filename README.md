@@ -3,6 +3,7 @@ This application simulates a course registration system for a university.
 
 Table of Contents
 =============
+* [Design]{#design}
 
 ## Design
 Here I will talk about the overall design of this application.
