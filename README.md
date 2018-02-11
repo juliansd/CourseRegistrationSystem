@@ -12,6 +12,13 @@ This application simulates a course registration system for a university.
     * [Main](https://github.com/juliansd/CourseRegistrationSystem#main)
     
 [Concepts](https://github.com/juliansd/CourseRegistrationSystem#concepts)
+* [Overloading](https://github.com/juliansd/CourseRegistrationSystem#overloading)
+* [Overriding](https://github.com/juliansd/CourseRegistrationSystem#overriding)
+* [Abstract Class](https://github.com/juliansd/CourseRegistrationSystem#abstract-class)
+* [Inheritance](https://github.com/juliansd/CourseRegistrationSystem#inheritance)
+* [Polymorphism](https://github.com/juliansd/CourseRegistrationSystem#polymorphism)
+* [Encapsulation](https://github.com/juliansd/CourseRegistrationSystem#encapsulation)
+* [ADT (Abstract Data Types)](https://github.com/juliansd/CourseRegistrationSystem#adt-(abstract-data-types))
 
 [Getting Started](https://github.com/juliansd/CourseRegistrationSystem#getting-started)
 
@@ -33,19 +40,30 @@ This is the super class for Admin and Student.  It is the base design for what i
 #### Admin
 The Admin class extends the User class and works very closely with each other class in the application.  Admin has complete administrative control over the course registration system.  The Admin can create, delete, and edit courses in the system.  Admin can also register other student's for the system giving them a username and password to login with.  The Admin class also implements `java.io.Serializable`, due to the fact that at the end of the program some data containing Admin class objects is serialized to be used later.  An important aspect to note is that if the Admin deletss a course from the system, it does NOT delete the course from a Student object's `courses` instance variable, the student will be required to do it themselves.
 
+#### Student
+The Student class also extends the User class and works closely with the Admin and Course classes.  Student has less control over the system than Admin, but is able to view, register, and withdraw from the courses offered in the system, as well as view the courses under specific parameters.  And just like Admin, Student implements `java.io.Serializable` because when a Student object is instantiated by the Admin command `-register`, the object is stored in `ArrayList<User> users` which is then serialized at the end of the application into a file called `Users.ser`.
+
 #### Course
-The Course class represents the courses which are stored, edited, created, and deleted by the Admin class.  The Course class also works very closely with the Student class due to the fact that when students register for a course, the Course object add's a student obect to an `ArrayList<Student>` instance variable which stores the students registered in the course.  Each course object has multiple parameters which are accessed by the Admin and Student classes to add, edit, or delete courses in the system.  The one's that are used the most when working with the Course class are: <Enter>
+The Course class represents the courses which are stored, edited, created, and deleted by the Admin class.  The Course class also works very closely with the Student class due to the fact that when students register for a course, the Course object adds a student obect to an `ArrayList<Student>` instance variable which stores the students registered in the course.  Each course object has multiple parameters which are accessed by the Admin and Student classes to add, edit, or delete courses in the system.  The one's that are used the most when working with the Course class are: <Enter>
 ```
 String courseName
 String courseID
 int sectionNumber
 ```
-<Enter>
+This class also implements `java.io.Serializable` because when a Course object is instantiated it is added to `ArrayList<Course> courses` which stores all the courses in the system and serializes them when the user decides to exit the program.  The data is stored into a file called `Courses.ser`.
 
 #### Main
-This class brings everything together.
+The Main class is the one that connects all the other classes.  It essentially runs the main functionality of the application as well as is responsible for the serialization and deserialization of the Course and User object data.
 
 ## Concepts
+
+### Overloading
+### Overriding
+### Abstract Class
+### Inheritance
+### Polymorphism
+### Encapsulation
+### ADT (Abstract Data Types)
 
 ## Getting Started
 For initial use please login with Admin acces:
