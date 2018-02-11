@@ -2,8 +2,7 @@
 This application simulates a course registration system for a university.
 
 #### Table of Contents
-[Design]{#design}
-<a name="design"/>
+[Design](https://github.com/juliansd/CourseRegistrationSystem#design)
 
 ## Design
 Here I will talk about the overall design of this application.
