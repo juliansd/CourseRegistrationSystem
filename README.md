@@ -6,10 +6,10 @@ This application simulates a course registration system for a university.
 * [Workflow](https://github.com/juliansd/CourseRegistrationSystem#workflow)
 * [Interfaces](https://github.com/juliansd/CourseRegistrationSystem#interfaces)
 * [Classes](https://github.com/juliansd/CourseRegistrationSystem#classes)
-* * [User](https://github.com/juliansd/CourseRegistrationSystem#user)
-* * [Admin](https://github.com/juliansd/CourseRegistrationSystem#admin)
-* * [Course](https://github.com/juliansd/CourseRegistrationSystem#course)
-* * [Main](https://github.com/juliansd/CourseRegistrationSystem#main)
+    * [User](https://github.com/juliansd/CourseRegistrationSystem#user)
+    * [Admin](https://github.com/juliansd/CourseRegistrationSystem#admin)
+    * [Course](https://github.com/juliansd/CourseRegistrationSystem#course)
+    * [Main](https://github.com/juliansd/CourseRegistrationSystem#main)
 [Getting Started](https://github.com/juliansd/CourseRegistrationSystem#getting-started)
 
 ## Design
