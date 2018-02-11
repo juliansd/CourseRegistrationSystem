@@ -39,9 +39,5 @@ public interface StudentInterface {
 	 * Display all courses that the student is currently registered in.
 	 */
 	public void viewAllCurrentCourses();
-	
-	/**
-	 * Display a list of commands executable by the student after a successful login.
-	 */
-	public void help();
+
 }

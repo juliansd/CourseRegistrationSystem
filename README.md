@@ -72,6 +72,50 @@ public Student(String username, String password, String firstName, String lastNa
 }
 ```
 ### Overriding
+Two concepts of method overriding are present in my Student class as well.  The overriden methods that are implemented are inherited from the interface StudentInterface, which Student implements: <Enter>
+Example 1:<Enter>
+StudentInterface Method:    `public void viewAvailableCourses(ArrayList<Course> courses);`<Enter>
+Overriden Method:<Enter>
+```
+@Override
+public void viewAvailableCourses(ArrayList<Course> courses) {
+    System.out.println("Open Courses:");
+    System.out.printf("%-30.30s  %-30.30s %-30.30s %-30.30s %-30.30s %-30.30s %-30.30s%n",
+    "Course name","Course ID", "Maximum # of Students", "Current # of Students",
+    "Course Instructor", "Section number","Course location");
+    for (Course course : courses) {
+        if (course.getCurrentNumOfstudents() < course.getMaxNumOfstudents()) {
+            System.out.printf("%-30.30s  %-30.30s %-30.30s %-30.30s %-30.30s %-30.30s %-30.30s%n",
+            course.getCourseName(), course.getCourseID(),
+            course.getMaxNumOfstudents(), course.getCurrentNumOfstudents(),
+            course.getCourseInstructor(), course.getSectionNumber(), course.getCourseLocation());
+
+        }
+    }
+
+}
+```
+Example 2:<Enter>
+StudentInterface Method: `public void withdraw(String courseName, String courseID, int sectionNumber);`<Enter>
+Overriden Method:<Enter>
+```
+@Override
+public void withdraw(String courseName, String courseID, int sectionNumber) {
+    for (int i = 0; i < this.getCourses().size(); i++) {
+        if (
+            this.getCourses().get(i).getCourseName().equals(courseName) &&
+            this.getCourses().get(i).getCourseID().equals(courseID) &&
+            this.getCourses().get(i).getSectionNumber() == sectionNumber) {
+            System.out.println(
+            this.getFirstName() + " " + this.getLastName() +
+            " is no longer registered in " + this.getCourses().get(i).getCourseName());
+            this.getCourses().remove(i);
+            break;
+        }
+    }
+
+}
+```
 ### Abstract Class
 ### Inheritance
 ### Polymorphism

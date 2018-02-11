@@ -282,7 +282,7 @@ public class Main {
 			while(true) {
 				
 				String command = scan.nextLine();
-				
+				System.out.println("Command: " + command);
 				if (command.equals("-help")) {
 					student.help();
 					

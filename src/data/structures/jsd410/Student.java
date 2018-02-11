@@ -108,39 +108,72 @@ public class Student extends User implements StudentInterface, java.io.Serializa
 				+ "and id, that you would like to register for.");
 		System.out.println("Course name:");
 		String courseName = scan.nextLine();
-		System.out.println("Course ID:");
-		String courseID = scan.nextLine();
-		System.out.println("Section:");
-		int courseSection;
-		try {
-			courseSection = scan.nextInt();
-			int n = courses.size();
-			for (Course course : courses) {
-				System.out.println(n);
-				n--;
-				if (
-						course.getCourseName().equals(courseName) && 
-						course.getSectionNumber() == courseSection && 
-						course.getCourseID().equals(courseID) && 
-						!(course.getMaxNumOfstudents() == course.getCurrentNumOfstudents())) {
-					course.addStudent(this);
-					this.courses.add(course);
-					System.out.println("Registration complete.");
-					break;
+		if (courseName.equals("")) {
+			System.out.println("There was an error.  Please re-enter the course name:");
+			courseName = scan.nextLine();
+			System.out.println("Course ID:");
+			String courseID = scan.nextLine();
+			System.out.println("Section:");
+			int courseSection;
+			try {
+				courseSection = scan.nextInt();
+				int n = courses.size();
+				for (Course course : courses) {
+					n--;
+					if (
+							course.getCourseName().equals(courseName) && 
+							course.getSectionNumber() == courseSection && 
+							course.getCourseID().equals(courseID) && 
+							!(course.getMaxNumOfstudents() == course.getCurrentNumOfstudents())) {
+						course.addStudent(this);
+						this.courses.add(course);
+						System.out.println("Registration complete.");
+						break;
+					}
 				}
+				if (n == 0) {
+					System.out.println("Could not find specified course.");
+				}
+			} catch (InputMismatchException e) {
+				e.printStackTrace();
+				System.err.println(
+						"Please make sure to enter a number for the Course section prompt.  "
+						+ "Try again.");
 			}
-			if (n == 0) {
-				System.out.println("Could not find specified course.");
+		} else {
+			System.out.println("Course ID:");
+			String courseID = scan.nextLine();
+			System.out.println("Section:");
+			int courseSection;
+			try {
+				courseSection = scan.nextInt();
+				int n = courses.size();
+				for (Course course : courses) {
+					n--;
+					if (
+							course.getCourseName().equals(courseName) && 
+							course.getSectionNumber() == courseSection && 
+							course.getCourseID().equals(courseID) && 
+							!(course.getMaxNumOfstudents() == course.getCurrentNumOfstudents())) {
+						course.addStudent(this);
+						this.courses.add(course);
+						System.out.println("Registration complete.");
+						break;
+					}
+				}
+				if (n == 0) {
+					System.out.println("Could not find specified course.");
+				}
+			} catch (InputMismatchException e) {
+				e.printStackTrace();
+				System.err.println(
+						"Please make sure to enter a number for the Course section prompt.  "
+						+ "Try again.");
 			}
-		} catch (InputMismatchException e) {
-			e.printStackTrace();
-			System.err.println(
-					"Please make sure to enter a number for the Course section prompt.  "
-					+ "Try again.");
 		}
+		
 	}
 
-	@Override
 	public void help() {
 		System.out.printf("%-30.200s%n %-30.200s%n %-30.200s%n %-30.200s%n %-30.200s%n %-30.200s%n %-30.200s%n",
 				"-viewall:\tView all courses that are available.\n",
