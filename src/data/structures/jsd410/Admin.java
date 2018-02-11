@@ -188,12 +188,12 @@ public class Admin extends User implements AdminInterface, java.io.Serializable 
 				"-register:\tRegister the specified student for a course\n",
 				"-viewall:\tDisplay all courses and their information registered in the Course " +
 				"Registration System\n",
-				"-viewallfull:\tDisplay all the courses which are full.\n",
+				"-viewfull:\tDisplay all the courses which are full.\n",
 				"-writefull:\tWrite list of full courses to a text file in the " +
 				"specified directory.\n",
-				"-showflass:\t Display a list of currently registered students in the " +
+				"-viewroster:\t Display a list of currently registered students in the " +
 				"specified class.\n",
-				"-display:\t Will display the specifed student's registered classes " +
+				"-viewstudent:\t Will display the specifed student's registered classes " +
 				"for the semester.\n",
 				"-exit:\tExit's the program.");
 	}
