@@ -252,6 +252,7 @@ public class Main {
 					System.out.println("System exiting...");
 					serializeCourses(courses);
 					serializeUsers(users);
+					System.exit(0);
 					break;
 				} else {
 					if (!command.equals("")) {
@@ -320,10 +321,14 @@ public class Main {
 					System.out.println("System exiting...");
 					serializeCourses(courses);
 					serializeUsers(users);
+					System.exit(0);
 					break;
+			
+				} else if (command.equals("")) {
+					continue;
 					
 				} else {
-					System.out.println("Command not found.");
+					System.err.println("Command not found.");
 				}
 			}
 			
