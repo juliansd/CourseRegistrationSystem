@@ -35,7 +35,7 @@ This application has two interfaces, one for the Admin class (AdminInterface) an
 In addition to the two interaces, this application contiains fives classes: User, Admin,  Student, Course,  and Main.
 
 #### User
-This is the super class for Admin and Student.  It is the base design for what it means to be a user in the Course Registration System.  This class provides the Admin and Student classes with the necesary instance variables to be inherited so that the Admin and Student experience while using the Course Registration System is as smoothe as possible.  It also allows for constructors to be inherited by the Admin and Student class which instantiate these objects with the specified parameters rather than doing it after instantiation.
+This is the abstract super class for Admin and Student.  It is the base design for what it means to be a user in the Course Registration System.  This class provides the Admin and Student classes with the necesary instance variables to be inherited so that the Admin and Student experience while using the Course Registration System is as smoothe as possible.  It also allows for constructors to be inherited by the Admin and Student class which instantiate these objects with the specified parameters rather than doing it after instantiation.
 
 #### Admin
 The Admin class extends the User class and works very closely with each other class in the application.  Admin has complete administrative control over the course registration system.  The Admin can create, delete, and edit courses in the system.  Admin can also register other student's for the system giving them a username and password to login with.  The Admin class also implements `java.io.Serializable`, due to the fact that at the end of the program some data containing Admin class objects is serialized to be used later.  An important aspect to note is that if the Admin deletss a course from the system, it does NOT delete the course from a Student object's `courses` instance variable, the student will be required to do it themselves.
@@ -58,6 +58,19 @@ The Main class is the one that connects all the other classes.  It essentially r
 ## Concepts
 
 ### Overloading
+The concept of method overloading is uphelp in my Student class where I've created two seperate constructors with different parameters to be passed:<Enter>
+Default Constructor:<Enter>
+```
+public Student() {
+    super(scan);
+}
+```
+Overloaded Constructor:<Enter>
+```
+public Student(String username, String password, String firstName, String lastName) {
+    super(username, password, firstName, lastName, scan);
+}
+```
 ### Overriding
 ### Abstract Class
 ### Inheritance

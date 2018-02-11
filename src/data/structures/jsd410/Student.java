@@ -116,6 +116,7 @@ public class Student extends User implements StudentInterface, java.io.Serializa
 			courseSection = scan.nextInt();
 			int n = courses.size();
 			for (Course course : courses) {
+				System.out.println(n);
 				n--;
 				if (
 						course.getCourseName().equals(courseName) && 

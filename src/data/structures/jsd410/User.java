@@ -8,7 +8,7 @@ import java.util.Scanner;
  * @version 1.0
  */
 @SuppressWarnings("serial")
-public class User implements java.io.Serializable {
+public abstract class User implements java.io.Serializable {
 	
 	/**
 	 * Instance variable Strings which represent the User object's username, password, first name, and last name.
