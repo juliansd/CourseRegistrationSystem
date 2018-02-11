@@ -117,8 +117,15 @@ public void withdraw(String courseName, String courseID, int sectionNumber) {
 }
 ```
 ### Abstract Class
+The User class which is extended by Admin and Student is an abstract class.  It is abstract because I don't ever need to instantiate a User object but would like Admin and Student to inherit some of the methods and instance variables that User has:<Enter>
+`public abstract class User implements java.io.Serializable {}`
+
 ### Inheritance
+An example of inheritance is the fact that Admin and Student both inherit from User which includes inheriting methods and instance variables.  To be more specific, on line 278 in my Main class I call `student.getPassword()` which is a method inherited from the User class.
+
 ### Polymorphism
+
+
 ### Encapsulation
 ### ADT (Abstract Data Types)
 
