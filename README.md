@@ -122,7 +122,6 @@ public void withdraw(String courseName, String courseID, int sectionNumber) {
             break;
         }
     }
-
 }
 ```
 ### Abstract Class
@@ -145,4 +144,15 @@ public ArrayList<Course> getCourses() {}
 ```
 
 ### ADT (Abstract Data Types)
-????
+Abstract data types are a very powerful tool used in Java which allows an instance of a class' type to be declared when it is instantiated.  For example:<Enter>
+```
+public class Student<E> {
+    private E dataField;
+}
+```
+allows for an instance of this class' `dataField` to be declared as various data types:
+```
+Student<String> = new Student("Hello!");
+Student<int> = new Student(10);
+```
+are both acceptable instantiations of this class.
