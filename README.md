@@ -144,7 +144,7 @@ public ArrayList<Course> getCourses() {}
 ```
 
 ### ADT (Abstract Data Types)
-Abstract data types are a very powerful tool used in Java which allows an instance of a class' type to be declared when it is instantiated.  For example:<Enter>
+Althogh this was not a concept Incorporated into my application, abstract data types are a very powerful tool used in Java which allows an instance of a class' type to be declared when it is instantiated.  For example:<Enter>
 ```
 public class Student<E> {
     private E dataField;
