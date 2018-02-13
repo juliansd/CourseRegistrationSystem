@@ -29,7 +29,7 @@ Username: `Admin`
 Password: `Admin001`
 
 Then follow the prompts as given.  `-help` can be used to view the commands that Admin and Student users have.  Note that student users are not accessible until the Admin runs `-register` and follows the prompts.<Enter>
-NOTE:  If the program closes prematurely and or the user does not exit the program using the `-exit` command, the data from that session will be lost.  Using the `-exit` commands ensures that the data changed and or created from that session is serialized.  If there is a problem with the initial compile of this program, try navigating to `CourseRegistrationSystem/serializedData` and delete whatever is inside.
+NOTE:  If the program closes prematurely and or the user does not exit the program using the `-exit` command, the data from that session will be lost.  Using the `-exit` commands ensures that the data changed and or created from that session is serialized.  If there is a problem with the initial compile of this program, try navigating to `CourseRegistrationSystem/serializedData` and delete whatever is inside.  If you are using Eclipse please make sure that you make a new project in eclipse, then add the .java files to that project.  Then on menu bar select Project -> Build Project. Then right click on that java file (in the Package Explorer), select Run -> Java Application.
 
 ## Design
 Here I will talk about the overall design of this application.
